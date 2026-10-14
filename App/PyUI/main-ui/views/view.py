@@ -16,6 +16,14 @@ class View(ABC):
         #is done with so it can be cleaned up as needed
         pass
 
+    def prepare_launch(self):
+        """Prepare a game launch while the view still owns the display.
+
+        Return False when the user cancels a transition. Standard views launch
+        immediately; animated views may override this hook.
+        """
+        return True
+
     def first_letter_of(self, option):
         # Entries expose their label through get_primary_text(); RomGridOrListEntry
         # stores it as display_name and has no primary_text attribute at all.

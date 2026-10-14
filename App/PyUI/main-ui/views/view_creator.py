@@ -230,6 +230,11 @@ class ViewCreator:
                     render_text_overlay=full_screen_grid_render_text_overlay,
                     image_resize_height_multiplier=image_resize_height_multiplier
                 )
+            case ViewType.CARTRIDGE:
+                from views.cartridge_view import CartridgeView
+
+                return CartridgeView(top_bar_text, options, selected_index)
+
             case ViewType.CAROUSEL:
                 return CarouselView(
                     top_bar_text=top_bar_text,

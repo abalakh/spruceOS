@@ -306,6 +306,8 @@ class RomsMenuCommon(ABC):
                         )
 
                     else:
+                        if not view.prepare_launch():
+                            continue
                         RecentsManager.add_game(selected.get_selection().get_value())
                         self.run_game(selected.get_selection().get_value())
                 elif(ControllerInput.X == selected.get_input() and not self.support_only_game_launching):
