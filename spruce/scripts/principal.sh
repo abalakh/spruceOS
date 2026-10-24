@@ -39,6 +39,12 @@ while true; do
         exit 0
     fi
 
+    # The Mini can return here at the screensaver's 400 MHz clock. Raise it
+    # before cleanup/config reads, rather than only just before Python starts.
+    if [ "$PLATFORM" = "MiyooMini" ] && [ ! -f /tmp/cmd_to_run.sh ]; then
+        set_performance
+    fi
+
     stop_pyui_message_writer
     # Not awaited: the menu does not depend on the LEDs.
     ( enable_or_disable_rgb; set_rgb_in_menu ) &
